@@ -16,4 +16,6 @@
     <string name="sunrise">Sunrise</string>
     <string name="measured">Measured:&#160;</string>
     <string name="degree_symbol">°F</string>
+    <string name="error_zip">Please Enter a 5 Digit Zip</string>
+    <string name="error_server">Sorry, there was an error with your service request :(</string>
 </resources>

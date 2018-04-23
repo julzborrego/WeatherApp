@@ -4,6 +4,7 @@ import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.content.Context;
+import android.net.Uri;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -11,6 +12,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.mcs.weatherapp.Model.WeatherModel;
 import com.example.mcs.weatherapp.Model.JSONConverter;
+import com.example.mcs.weatherapp.Utils.WeatherAPIConstants;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,12 +41,20 @@ public class WeatherAPI implements WeatherRepo {
         //model will get set to this mutable data object in call back
         final MutableLiveData<WeatherModel> data = new MutableLiveData<>();
 
-        //url for open weather map
-        String server_url = "http://api.openweathermap.org/data/2.5/weather?zip="
-                + zip + ",us&appid=308f8b6df2cf69a1efa3932c8ae1b899&units=imperial";
+        //uri for open weather map
+        Uri endPoint = Uri
+                .parse(WeatherAPIConstants.BASE_URL)
+                .buildUpon()
+                .appendQueryParameter(WeatherAPIConstants.ZIP_QUERY,
+                        zip + WeatherAPIConstants.US)
+                .appendQueryParameter(WeatherAPIConstants.APPID_QUERY,
+                        WeatherAPIConstants.APPID_PARAM)
+                .appendQueryParameter(WeatherAPIConstants.UNITS_QUERY,
+                        WeatherAPIConstants.UNITS_PARAM)
+                .build();
 
         //Set the call backs for request
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, server_url, null,
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, endPoint.toString(), null,
                 new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {

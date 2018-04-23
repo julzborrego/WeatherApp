@@ -53,7 +53,7 @@ public class ZipSearchFragment extends Fragment {
                 }
                 else{
                     //error handling for invalid zip
-                    Toast.makeText(getActivity(), "Please Enter a 5 Digit Zip",
+                    Toast.makeText(getActivity(), R.string.error_zip,
                             Toast.LENGTH_SHORT).show();
                 }
             }

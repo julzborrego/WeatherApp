@@ -60,7 +60,7 @@ public class WeatherFragment extends Fragment {
 
                     //error handling if there was a servise error
                     if (weatherModel.getOverview().equals("ERROR")) {
-                        Toast.makeText(getActivity(), "Sorry, there was an error with your service request :(",
+                        Toast.makeText(getActivity(), R.string.error_server,
                                 Toast.LENGTH_LONG).show();
                     }
                     //Udate the UI
