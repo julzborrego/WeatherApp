@@ -12,14 +12,14 @@ import java.util.Date;
 public class JSONConverter {
     public static WeatherModel build(JSONObject jsonResponse) throws JSONException{
 
-        String overview = jsonResponse.getJSONArray("weather").getJSONObject(0).getString("main");
-        String description = jsonResponse.getJSONArray("weather").getJSONObject(0).getString("description");
-        String temp = ""+jsonResponse.getJSONObject("main").getDouble("temp");
-        String windspeed = jsonResponse.getJSONObject("wind").getDouble("speed")+"mph";
-        String pressure = jsonResponse.getJSONObject("main").getInt("pressure")+" hpa";
-        String humidity = jsonResponse.getJSONObject("main").getInt("humidity")+ "%";
-        int sunrise = jsonResponse.getJSONObject("sys").getInt("sunrise");
-        String city = jsonResponse.getString("name");
+        String overview = jsonResponse.optJSONArray("weather").optJSONObject(0).optString("main");
+        String description = jsonResponse.optJSONArray("weather").optJSONObject(0).optString("description");
+        String temp = ""+jsonResponse.optJSONObject("main").optDouble("temp");
+        String windspeed = jsonResponse.optJSONObject("wind").optDouble("speed")+"mph";
+        String pressure = jsonResponse.optJSONObject("main").optInt("pressure")+" hpa";
+        String humidity = jsonResponse.optJSONObject("main").optInt("humidity")+ "%";
+        int sunrise = jsonResponse.optJSONObject("sys").optInt("sunrise");
+        String city = jsonResponse.optString("name");
 
        String sunriseStr = new SimpleDateFormat("HH:mm")
                 .format(new Date(sunrise * 1000L));
